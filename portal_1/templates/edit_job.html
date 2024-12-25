@@ -1,0 +1,95 @@
+{% extends 'admin_nav.html' %}
+
+
+
+{% block css %}
+{% endblock %}
+{% block body %}
+
+<div class="container">{% for message in messages%}
+    <h3>{{message}}</h3>
+        {% endfor %}
+        </div>
+        
+    <div class="container" style="border:solid 1px ; margin-top: 4px;">
+<form class="container mt-3" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label>Job Title</label>
+            <input type="text" class="form-control mt-1" name="job_title" id="job_title" value="{{job.title}}" required>
+        </div>
+    </div>
+    
+    <div class="row mt-3">
+        <div class="form-group col-md-6">
+            <label>Start Date</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;({{job.start_date}})
+            <input type="date" class="form-control mt-1" name="start_date" id="start_date">
+        </div>
+        <div class="form-group col-md-6">
+            <label>End Date</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;({{job.end_date}})
+            <input type="date" class="form-control mt-1" name="end_date" id="end_date">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="form-group col-md-6">
+            <label>Experience (in years)</label>
+            <input type="text" class="form-control mt-1" name="experience" id="experience" value="{{job.experience}}" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label>Salary (per month)</label>
+            <input type="number" class="form-control mt-1" name="salary" id="salary" value="{{job.salary}}" required>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="form-group col-md-12">
+            <label>Skills Required</label>
+            <input type="text" class="form-control mt-1" name="skills" id="skills" value="{{job.skills}}" required>
+        </div>
+        </div>
+        <div class="row mt-3">
+            <div class="form-group col-md-12">
+                <label>Category</label>
+                <input type="text" class="form-control mt-1" name="category" id="category" value="{{job.category}}" required>
+            </div>
+            </div>
+    <div class="row mt-3">
+        <div class="form-group col-md-12">
+            <label>Company Location</label>
+            <input type="text" class="form-control mt-1" name="location" id="location" value="{{job.location}}" required>
+        </div>
+    </div>
+
+
+    <div class="row mt-3">
+        <div class="form-group col-md-12">
+            <label>Company </label>
+            <input type="text" class="form-control" name="company" id="company" value="{{job.company}}" required>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="form-group col-md-12">
+            <label>logo of company</label>
+            <input type="file" class="form-control" name="image" id="image" value="{{job.image.url}}" required>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="form-group col-md-12">
+            <label>No. of openings</label>
+            <input type="number" class="form-control" name="openings" id="openings" value="{{job.n_openings}}" required>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="form-group col-md-12">
+            <label>Job Description</label>
+            <textarea name="description" id="description" class="form-control mt-1" cols="30" rows="4" required>{{job.descriptions}}</textarea>
+        </div>
+    </div>
+<input type="submit" value="Submit" class="btn btn-primary mt-2">
+</form>
+</div>
+{%endblock %}

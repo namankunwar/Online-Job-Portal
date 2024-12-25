@@ -1,0 +1,45 @@
+{%extends 'admin_nav.html'%}
+
+{%block body%}
+
+<div class="container">
+    <table class="table table-hover " id="example" >
+        <thead>
+            <tr style="background-color:rgb(235, 189, 37) ;">
+                <th>S.no</th>
+                <th>Applicant</th>
+                <th>Image</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>C.V</th>
+                <th>Job</th>
+                <th>Company</th>
+                <th>Apply date</th>
+                <th>Status</th>                
+                <th>ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+           {% for i in data %}
+            <tr style="background-color: rgb(216, 207, 207);">
+                <td>{{forloop.counter}}</td>
+                <td>{{i.candidate.user.first_name}} {{i.candidate.user.last_name}}</td>
+                <td><img src="{{i.candidate.image.url}}" style="width:90px; height:90px; border-radius:50% ;"></td>
+                <td>{{i.candidate.user.email}}</td>
+                <td>{{i.candidate.phone}}</td>
+                <td><a href = "{{i.candidate.cv.url}}" style="color:blue;">Click here to view!</a> </td>
+                <td>{{i.job.title}}</td>
+                <td>{{i.company}}</td>
+                <td>{{i.apply_date}}</td>
+                <td>{{i.status}}</td>
+                <td><a href="{% url 'portal_1:delete_applicant' i.id%}" class="btn btn-danger btn-small" onclick="return confirm('Are you sure?')"> Delete</a></td>
+                
+            </tr>
+            {% endfor %}
+
+            
+        </tbody>
+    </table>
+</div>
+{%endblock body%}
+

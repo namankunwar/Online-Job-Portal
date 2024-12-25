@@ -1,0 +1,52 @@
+{%extends 'layout/layout.html'%}
+{%load static%}
+{% block body %}
+
+
+    <div class="container">
+        {% for i in data%}
+        <div class="single-job-items mb-30">
+            <div class="job-items">
+                <div class="company-img">
+                    <a href="{%url 'portal_1:job_detail' i.id%}"><img src="{{i.image.url}}" alt="" style="border-radius:50%;height:100px;width:100px;" ></a>
+                </div>
+                <div class="job-tittle job-tittle2">
+                    <a href="{%url 'portal_1:job_detail' i.id%}">
+                        <h4>{{i.title}}</h4>
+                    </a>
+                    <ul>
+                        <li>{{i.company}}</li>
+                        <li><i class="fas fa-map-marker-alt"></i>{{i.location}}</li>
+                        <li>{{i.salary}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="items-link items-link2 f-right">
+                <a href="{%url 'portal_1:job_detail' i.id%}">{{i.category}}</a>
+                
+                <span>{{i.published_date}}</span>
+            </div>
+        </div>
+    {%endfor%}
+    <div class="pagination" id="content">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">&laquo; </a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last </a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+
+    {%endblock %}
+

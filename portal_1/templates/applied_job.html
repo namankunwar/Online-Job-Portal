@@ -1,0 +1,46 @@
+
+{%extends 'layout/layout.html'%}
+
+{%block body%}
+
+
+<div class="container">
+    <table class="table table-hover " id="example" >
+        <thead>
+            <tr style="background-color:rgb(235, 189, 37) ;">
+                <th>S.no</th>
+                <th>companay</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Salary</th>
+                <th>Category</th>
+   
+                <th>Address</th>
+                <th>Apply date</th>
+                
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+           {% for i in data %}
+            <tr style="background-color: rgb(216, 207, 207);">
+                <td>{{forloop.counter}}</td>
+                <td>{{i.company}}</td>
+                <td><img src="{{i.job.image.url}}" style="width:90px; height:90px; border-radius:50% ;"></td>
+                <td>{{i.job.title}}</td>
+                <td>{{i.job.salary}}</td>
+                <td>{{i.job.category}}</td>
+                <td>{{i.job.location}} </td>
+                <td>{{i.apply_date}} </td>
+                <td>{{i.status}}</td>
+                
+            </tr>
+            {% endfor %}
+
+            
+        </tbody>
+    </table>
+</div>
+
+
+{%endblock body%}

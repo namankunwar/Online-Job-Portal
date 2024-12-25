@@ -1,0 +1,59 @@
+
+{% extends 'admin_nav.html' %}
+
+
+
+{% block css %}
+{% endblock %}
+{% block body %}
+
+
+    <div class="container">
+    <table class="table table-hover " id="example" >
+        <thead>
+            <tr style="background-color:rgb(235, 189, 37) ;">
+                <th>S.no</th>
+                <th>Full name</th>
+                <th>Image</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Gender</th>
+                <th>C.V</th>
+                <th>Province</th>
+                <th>City</th>
+                <th>Address</th>
+                
+                <th>ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+           {% for i in data %}
+            <tr style="background-color: rgb(216, 207, 207);">
+                <td>{{forloop.counter}}</td>
+                <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+                <td><img src="{{i.image.url}}" style="width:90px; height:90px; border-radius:50% ;"></td>
+                <td>{{i.user.email}}</td>
+                <td>{{i.phone}}</td>
+                <td>{{i.gender}}</td>
+                <td><a href = "{{i.cv.url}}" style="color:blue;">Click here to view!</a> </td>
+                <td>{{i.province}}</td>
+                <td>{{i.city}}</td>
+                <td>{{i.address}}</td>
+                <td><a href="{% url 'portal_1:delete_user' i.user.id%}" class="btn btn-danger btn-small" onclick="return confirm('Are you sure?')"> Delete</a></td>
+                
+            </tr>
+            {% endfor %}
+
+            
+        </tbody>
+    </table>
+</div>
+
+    {%endblock %}
+   <!-- dataexport endhere-->
+   <!-- dataexportcdn javascript here-->
+ 
+
+ 
+
+ 

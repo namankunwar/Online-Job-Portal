@@ -1,0 +1,93 @@
+{%extends 'layout/layout.html'%}
+
+{%block body%}
+<div class="container">{% for message in messages%}
+        <h3>{{message}}</h3>
+            {% endfor %}
+            </div>
+<div class="container"> <a href="{%url 'portal_1:change_password'%}" class="btn head-btn1" style="margin-bottom: 7px ; ">Change password</a> 
+ <a href="{%url 'portal_1:applied_job' candidate.id%}" class="btn head-btn1" style="margin-bottom: 7px ; margin-right: 10px; ">Applied jobs</a> </div>
+<div class="container" style="border:solid 1px ; margin-bottom: 4px;">
+    <div class="row">
+        <div class="col-sm-6">
+
+            <form class="container mt-4" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>First Name</label>
+                        <input type="text" class="form-control mt-2" name="first_name" id="first_name"
+                            value="{{candidate.user.first_name}}" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control mt-2" name="last_name" id="last_name"
+                        value="{{candidate.user.last_name}}" required>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="form-group col-md-12">
+                        <label>Username</label>
+                        <input type="text" class="form-control mt-2" name="username" id="username"
+                            value="{{candidate.user.username}}" readonly>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="form-group col-md-6">
+                        <label>Email Id</label>
+                        <input type="email" class="form-control mt-2" name="email" id="email" value="{{candidate.user.email}}" readonly>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Contact Number</label>
+                        <input type="tel" class="form-control mt-2" name="phone" id="phone" value="{{candidate.phone}}" required>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="form-group col-md-6">
+                        <label for="inputresume" class="form-label">Resume </label>
+                        
+                        <input type="file" class="form-control" name="user_cv"  value="{{candiate.cv.url}}"  >
+                        <!-- <input type="file" class="form-control" name="user_cv"  value="C:\Users\Naman\Pictures\Screenshots"  > -->
+                      </div>
+                    <div class="form-group col-md-6">
+                        <label>Profile Photo</label>
+                        <input type="file" class="form-control mt-2" name="user_image" value="C:\Users\Naman\Pictures\Screenshots" >
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label  >Address</label>
+                        <input type="text" class="form-control"  name="address"  value="{{candidate.address}}">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label >city</label>
+                        <input type="text" class="form-control"  name="city"  value="{{candidate.city}}">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label >Province</label>
+                        <input type="text" class="form-control"  name="province"  value="{{candidate.province}}">
+                      </div>
+                      
+                </div>
+               
+                <div class="row mt-4 " style="margin-bottom: 5px;"> 
+                    <input type="submit" value="Update" class="btn mt-4" > </input>
+                </div>
+
+
+               
+            </form>
+
+        </div>
+        <div class="col-sm-4 mt-5 text-center">
+            <img src="{{candidate.image.url}}" alt="" width="200px" height="200px" style = "border-radius:50%;">
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
